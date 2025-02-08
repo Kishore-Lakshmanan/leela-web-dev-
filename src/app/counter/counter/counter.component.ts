@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-counter',
@@ -7,17 +8,17 @@ import { Component } from '@angular/core';
 })
 export class CounterComponent {
 counter:number=0
-constructor(){}
+constructor( ){}
 onInit(){}
-onincrement(){
-this.counter++
-}
+// onincrement(){
+// this.counter++
+// }
 
-ondecrement(){
-  this.counter--
-}
+// ondecrement(){
+//   this.counter--
+// }
 
-onreset(){
-  this.counter=0
-}
+// onreset(){
+//   this.counter=0
+// }
 }
