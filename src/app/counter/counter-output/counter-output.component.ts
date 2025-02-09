@@ -1,14 +1,14 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CounterState } from '../State/counter.state';
 import { Subscription } from 'rxjs';
+import { CounterState } from '../State/counter.state';
 
 @Component({
   selector: 'app-counter-output',
   templateUrl: './counter-output.component.html',
   styleUrls: ['./counter-output.component.css'],
 })
-export class CounterOutputComponent implements OnInit,OnDestroy {
+export class CounterOutputComponent implements OnInit, OnDestroy {
   counter: number | undefined = 0;
   sink!: Subscription;
   // @Input() counter: any;

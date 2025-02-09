@@ -1,14 +1,15 @@
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { CounterComponent } from './counter/counter/counter.component';
-import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
-import { CounterButtonsComponent } from './counter/counter-buttons/counter-buttons.component';
-import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './counter/State/counter.reducer';
-import { CustomCounterInputComponent } from './counter/custom-counter-input/custom-counter-input.component';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AppComponent } from './app.component';
+import { counterReducer } from './counter/State/counter.reducer';
+import { CounterButtonsComponent } from './counter/counter-buttons/counter-buttons.component';
+import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
+import { CounterComponent } from './counter/counter/counter.component';
+import { CustomCounterInputComponent } from './counter/custom-counter-input/custom-counter-input.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +17,15 @@ import { FormsModule } from '@angular/forms';
     CounterComponent,
     CounterOutputComponent,
     CounterButtonsComponent,
-    CustomCounterInputComponent
+    CustomCounterInputComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.forRoot({counter:counterReducer})
+    StoreModule.forRoot({ counter: counterReducer }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }), // Enable only in dev mode
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
