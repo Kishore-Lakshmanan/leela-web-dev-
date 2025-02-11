@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/posts.model';
 import { AppState } from 'src/app/store/app.state';
+import { deletePostById } from '../State/posts.actions';
 import { getPosts } from '../State/posts.selector';
 
 @Component({
@@ -16,5 +17,12 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts = this.store.select(getPosts);
+  }
+
+  deletePost(data: any) {
+    if (confirm('Are you sure you want to delete ?')) {
+      const id = Number(data); // Ensure it is converted to a number
+      this.store.dispatch(deletePostById({ id })); // Pass an object with the correct key
+    }
   }
 }
