@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { PostsService } from 'src/app/services/posts.service';
 import { AppState } from 'src/app/store/app.state';
 import {
@@ -24,7 +25,8 @@ export class PostsEffects {
   constructor(
     private actions$: Actions,
     private postsService: PostsService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {}
 
   loadPosts$ = createEffect(() => {
@@ -107,4 +109,17 @@ export class PostsEffects {
       })
     );
   });
+
+  navigateAfterUpdate$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(updatePostSuccess),
+        tap(() => {
+          this.router.navigate(['/posts']); // Directly navigate
+          //this.store.dispatch(routeToPost({ routingTo: '/posts' })); #TODO :- need to find out the soln
+          // this.router.navigate([action.path]);
+        })
+      ),
+    { dispatch: false } // Since we are manually dispatching the navigation action
+  );
 }

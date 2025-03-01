@@ -1,4 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { RouterStateUrl } from 'src/app/store/router/custom-serializer';
+import { gerCurrentRoute } from 'src/app/store/router/router.selector';
 import { PostsState } from './posts.state';
 
 export const POST_STATE_NAME = 'posts';
@@ -8,8 +10,9 @@ export const getPosts = createSelector(getPostsState, (state) => {
   return state.posts;
 });
 
-export const getPostById = (id: any) =>
-  createSelector(
-    getPostsState,
-    (state) => state.posts.find((post) => post.id === id) || null
-  );
+export const getPostById = createSelector(
+  getPosts,
+  gerCurrentRoute,
+  (posts, router: RouterStateUrl) =>
+    posts.find((post) => post.id === router.params['id']) || null
+);

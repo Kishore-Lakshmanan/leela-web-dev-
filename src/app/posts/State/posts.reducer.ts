@@ -5,6 +5,7 @@ import {
   deletePostById,
   deletePostSuccess,
   loadPostsSuccess,
+  routeToPost,
   updatePost,
   updatePostSuccess,
 } from './posts.actions';
@@ -68,6 +69,12 @@ const _postsReducer = createReducer(
     return {
       ...state,
       posts: action.posts,
+    };
+  }),
+  on(routeToPost, (state, action) => {
+    return {
+      ...state,
+      routingToPage: action.routingTo,
     };
   })
 );

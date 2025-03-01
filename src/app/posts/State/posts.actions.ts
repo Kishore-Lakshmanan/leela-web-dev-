@@ -10,6 +10,8 @@ export const DELETE_POST_SUCCESS = '[posts page] delete post success';
 export const LOAD_POST = '[posts page] load posts';
 export const LOAD_POST_SUCCESS = '[posts page] load posts success';
 
+export const ROUTE_TO_POST = '[posts page] routing';
+
 export const addPost = createAction(ADD_POST_ACTION, props<{ post: Post }>());
 export const addPostSuccess = createAction(
   ADD_POST_SUCCESS,
@@ -37,4 +39,9 @@ export const loadPosts = createAction(LOAD_POST);
 export const loadPostsSuccess = createAction(
   LOAD_POST_SUCCESS,
   props<{ posts: Post[] }>()
+);
+
+export const routeToPost = createAction(
+  ROUTE_TO_POST,
+  props<{ routingTo: string }>()
 );
