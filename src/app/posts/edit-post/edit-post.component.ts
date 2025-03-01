@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/posts.model';
 import { AppState } from 'src/app/store/app.state';
+import { setLoadingSpinner } from 'src/app/store/shared.actions';
 import { updatePost } from '../State/posts.actions';
 import { getPostById } from '../State/posts.selector';
 
@@ -76,6 +77,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       title,
       description,
     };
+    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(updatePost({ post }));
     this.router.navigate(['posts']);
     console.log(title, description);
