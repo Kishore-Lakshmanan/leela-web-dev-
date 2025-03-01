@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
+import { COUNTER_STATE_NAME } from '../State/counter.selector';
 
 @Component({
   selector: 'app-counter-output',
@@ -16,7 +17,7 @@ export class CounterOutputComponent implements OnInit, OnDestroy {
   // @Input() counter: any;
   constructor(private store: Store<AppState>) {}
   ngOnInit() {
-    this.sink = this.store.select('counter').subscribe((data: any) => {
+    this.sink = this.store.select(COUNTER_STATE_NAME).subscribe((data: any) => {
       this.counter = data.counter;
     });
   }

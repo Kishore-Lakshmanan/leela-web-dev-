@@ -1,0 +1,18 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+}
+
+.form-control {
+  border-radius: 6px;
+}
+
+button {
+  border-radius: 6px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

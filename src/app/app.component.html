@@ -1,8 +1,20 @@
 <app-header></app-header>
+<app-loading-spinner *ngIf="showLoading | async"></app-loading-spinner>
 <div class="container">
   <div class="row">
+    <div class="alert alert-danger mt-2" *ngIf="errorMessage | async as error">
+      Error occured:- {{ error }}
+    </div>
     <div class="col-md-12">
       <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="showToast">
+      <div
+        class="pb-3 mb-5 me-4 mr-3 toast show position-fixed bottom-0 end-0 p-3 bg-danger text-white"
+        style="z-index: 1050; right: 20px"
+      >
+        ❌ Failed - Check Login Credentials
+      </div>
     </div>
   </div>
 </div>

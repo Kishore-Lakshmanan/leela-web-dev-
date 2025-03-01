@@ -8,6 +8,10 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((x) => x.AuthModule),
+  },
+  {
     path: 'counter',
     loadChildren: () =>
       import('./counter/counter.module').then((m) => m.CounterModule),

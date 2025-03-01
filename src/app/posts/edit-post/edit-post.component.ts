@@ -29,7 +29,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
 
       if (id !== null) {
         this.postSubscription = this.store
-          .select(getPostById(+id))
+          .select(getPostById(id))
           .subscribe((data) => {
             this.post = data ?? undefined; // Ensures `null` is converted to `undefined`
             this.createForm();

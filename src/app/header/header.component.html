@@ -20,6 +20,28 @@
         <a class="nav-link" [routerLink]="['/counter']">Counter</a>
         <a class="nav-link" [routerLink]="['/posts']">Posts</a>
       </div>
+      <!-- Move authentication links to the right -->
+      <div class="navbar-nav ms-auto">
+        <a
+          class="nav-link"
+          [routerLink]="['/auth']"
+          *ngIf="!(isAuthenticated | async)"
+          >Login</a
+        >
+        <a
+          class="nav-link"
+          [routerLink]="['/auth/signup']"
+          *ngIf="!(isAuthenticated | async)"
+          >Sign up</a
+        >
+        <a
+          class="nav-link"
+          href="#"
+          *ngIf="isAuthenticated | async"
+          (click)="onLogout($event)"
+          >Logout</a
+        >
+      </div>
     </div>
   </div>
 </nav>
